@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Car Loan Calculator</string>
+    <string name="btn_Cal">Calculate</string>
+    <string name="btn_Clear">Clear</string>
+    <string name="car_loan">Car Loan:</string>
+    <string name="interest">Interest:</string>
+    <string name="monthly_Repayment">Monthly Repayment:</string>
+</resources>
