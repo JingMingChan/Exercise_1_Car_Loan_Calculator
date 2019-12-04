@@ -34,9 +34,9 @@ class MainActivity : AppCompatActivity() {
         loanPeriod = findViewById(R.id.loanPeriod)
         interestRate = findViewById(R.id.interestRate)
 
-        carloan = findViewById(R.id.carLoanVal)
-        interest = findViewById(R.id.interestVal)
-        monRepay = findViewById(R.id.monRepayVal)
+        carloan = findViewById(R.id.carLoan)
+        interest = findViewById(R.id.interest)
+        monRepay = findViewById(R.id.monRepay)
 
 
         findViewById<Button>(R.id.btn_cal).setOnClickListener {
@@ -50,22 +50,23 @@ class MainActivity : AppCompatActivity() {
 
     private fun calculate(view: View){
 
+        carloan.setText(R.string.car_loan)
+        interest.setText(R.string.interest)
+        monRepay.setText(R.string.monthly_Repayment)
         try {
 
             //if(TextUtils.isEmpty(carPrice.text) && TextUtils.isEmpty(downPayAmt.text))
-            carloan.setText(formater.format(carPrice.text.toString().toDouble() - downPayAmt.text.toString().toDouble()))
-            interest.setText(formater.format(carloan.text.toString().toDouble() * interestRate.text.toString().toDouble() * loanPeriod.text.toString().toDouble()))
+            carloan.append(formater.format(carPrice.text.toString().toDouble() - downPayAmt.text.toString().toDouble()))
+            //carloan.setText(formater.format(carPrice.text.toString().toDouble() - downPayAmt.text.toString().toDouble()))
+            interest.append(formater.format((carPrice.text.toString().toDouble() - downPayAmt.text.toString().toDouble()) * interestRate.text.toString().toDouble() * loanPeriod.text.toString().toDouble()))
 
-            if((carloan.text.toString().toDouble() + interestRate.text.toString().toDouble()) == 0.toDouble()){
-                monRepay.setText(formater.format(0))
-            }else {
-                monRepay.setText(formater.format((carloan.text.toString().toDouble() + interestRate.text.toString().toDouble()) / loanPeriod.text.toString().toDouble() / 12.toDouble()))
-            }
+            monRepay.append(formater.format(((carPrice.text.toString().toDouble() - downPayAmt.text.toString().toDouble()) + ((carPrice.text.toString().toDouble() - downPayAmt.text.toString().toDouble()) * interestRate.text.toString().toDouble() * loanPeriod.text.toString().toDouble())) / loanPeriod.text.toString().toDouble() / 12.toDouble()))
+
 
         }catch (e:Exception){
-            carloan.setText(formater.format(0))
-            interest.setText(formater.format(0))
-            monRepay.setText(formater.format(0))
+            carloan.setText(R.string.car_loan)
+            interest.setText(R.string.interest)
+            monRepay.setText(R.string.monthly_Repayment)
             Toast.makeText(this, "Please don't leave any text box empty",
                 Toast.LENGTH_SHORT).show()
         }
@@ -80,8 +81,8 @@ class MainActivity : AppCompatActivity() {
         downPayAmt.setText("")
         loanPeriod.setText("")
         interestRate.setText("")
-        carloan.setText("")
-        interest.setText("")
-        monRepay.setText("")
+        carloan.setText(R.string.car_loan)
+        interest.setText(R.string.interest)
+        monRepay.setText(R.string.monthly_Repayment)
     }
 }
