@@ -8,6 +8,7 @@ import android.widget.TextView
 import android.content.Context
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import java.text.DecimalFormat
 import java.lang.Exception
 
@@ -51,6 +52,7 @@ class MainActivity : AppCompatActivity() {
 
         try {
 
+            //if(TextUtils.isEmpty(carPrice.text) && TextUtils.isEmpty(downPayAmt.text))
             carloan.setText(formater.format(carPrice.text.toString().toDouble() - downPayAmt.text.toString().toDouble()))
             interest.setText(formater.format(carloan.text.toString().toDouble() * interestRate.text.toString().toDouble() * loanPeriod.text.toString().toDouble()))
 
@@ -64,6 +66,8 @@ class MainActivity : AppCompatActivity() {
             carloan.setText(formater.format(0))
             interest.setText(formater.format(0))
             monRepay.setText(formater.format(0))
+            Toast.makeText(this, "Please don't leave any text box empty",
+                Toast.LENGTH_SHORT).show()
         }
 
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
