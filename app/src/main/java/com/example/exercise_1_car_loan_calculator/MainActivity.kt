@@ -55,12 +55,16 @@ class MainActivity : AppCompatActivity() {
         monRepay.setText(R.string.monthly_Repayment)
         try {
 
-            //if(TextUtils.isEmpty(carPrice.text) && TextUtils.isEmpty(downPayAmt.text))
-            carloan.append(formater.format(carPrice.text.toString().toDouble() - downPayAmt.text.toString().toDouble()))
-            //carloan.setText(formater.format(carPrice.text.toString().toDouble() - downPayAmt.text.toString().toDouble()))
-            interest.append(formater.format((carPrice.text.toString().toDouble() - downPayAmt.text.toString().toDouble()) * interestRate.text.toString().toDouble() * loanPeriod.text.toString().toDouble()))
+            val carloanCal :Double = carPrice.text.toString().toDouble() - downPayAmt.text.toString().toDouble()
+            val interestCal : Double = carloanCal * interestRate.text.toString().toDouble() * loanPeriod.text.toString().toDouble()
+            val monRepayCal : Double =(carloanCal + interestCal)/loanPeriod.text.toString().toDouble() / 12.toDouble()
 
-            monRepay.append(formater.format(((carPrice.text.toString().toDouble() - downPayAmt.text.toString().toDouble()) + ((carPrice.text.toString().toDouble() - downPayAmt.text.toString().toDouble()) * interestRate.text.toString().toDouble() * loanPeriod.text.toString().toDouble())) / loanPeriod.text.toString().toDouble() / 12.toDouble()))
+            carloan.append("RM")
+            carloan.append(formater.format(carloanCal))
+            interest.append("RM")
+            interest.append(formater.format(interestCal))
+            monRepay.append("RM")
+            monRepay.append(formater.format(monRepayCal))
 
 
         }catch (e:Exception){
